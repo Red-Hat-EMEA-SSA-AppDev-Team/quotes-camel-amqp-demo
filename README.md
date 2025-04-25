@@ -1,7 +1,11 @@
 Camel Quarkus AMQP 1.0 Demo
 ============================
 
-This project illustrates how you can interact with AMQP 1.0 (Apache Artemis in this demo) using Red Hat build of Apache Camel.
+This project demonstrates how to interact with AMQP 1.0 using Apache Artemis and [Red Hat build of Apache Camel for Quarkus](https://docs.redhat.com/en/documentation/red_hat_build_of_apache_camel/4.8#Red%20Hat%20build%20of%20Apache%20Camel%20for%20Quarkus).
+It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with both the quote producer and processor reimplemented using Camel for Quarkus.
+
+![](./doc_images/quote-app.png)
+
 
 ## Start the application in dev mode
 
