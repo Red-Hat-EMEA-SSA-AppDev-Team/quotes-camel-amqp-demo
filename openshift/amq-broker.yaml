@@ -1,0 +1,77 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: broker-users-jaas-config
+stringData:
+  login.config: |
+    activemq {
+      org.apache.activemq.artemis.spi.core.security.jaas.PropertiesLoginModule sufficient
+          reload=true
+          org.apache.activemq.jaas.properties.user="new-users.properties"
+          org.apache.activemq.jaas.properties.role="new-roles.properties";
+
+      org.apache.activemq.artemis.spi.core.security.jaas.PropertiesLoginModule sufficient
+          reload=false
+          org.apache.activemq.jaas.properties.user="artemis-users.properties"
+          org.apache.activemq.jaas.properties.role="artemis-roles.properties"
+          baseDir="/home/jboss/amq-broker/etc";
+    };
+  new-users.properties: |
+    quotes-processor=openshift
+    quotes-producer=openshift
+  new-roles.properties: |
+    admin=quotes-processor, quotes-producer
+type: Opaque
+---
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: amq-broker
+spec:
+  acceptors:
+  - name: amqp
+    port: 5672
+    protocols: amqp
+  - name: mqtt
+    port: 1883
+    protocols: mqtt
+  adminPassword: openshift
+  adminUser: admin
+  brokerProperties:
+  - populateValidatedUser=true
+  - rejectEmptyValidatedUser=false
+  - journalMinFiles=2
+  - journalPoolFiles=10
+  - journalFileSize=10485760
+  - suppressSessionNotifications=true
+  console:
+    expose: true
+  deploymentPlan:
+    enableMetricsPlugin: true
+    image: placeholder
+    jolokiaAgentEnabled: true
+    journalType: nio
+    managementRBACEnabled: true
+    messageMigration: true
+    persistenceEnabled: true
+    requireLogin: true
+    size: 1
+    extraMounts:
+      secrets:
+      - "broker-users-jaas-config"
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: amq-broker
+  labels:
+    ActiveMQArtemis: amq-broker
+spec:
+  selector:
+    matchLabels:
+      ActiveMQArtemis: amq-broker
+  endpoints:
+  - path: /metrics
+    port: console-jolokia
+    scheme: http
