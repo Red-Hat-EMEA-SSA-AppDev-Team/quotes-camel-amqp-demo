@@ -4,16 +4,18 @@ kind: ConfigMap
 metadata:
   name: quotes-producer-config
 data:
-  # quarkus.otel.exporter.otlp.traces.endpoint: http://otel-collector.observability.svc:4317
-  quarkus.qpid-jms.url: amqp://amq-broker-amqp-0-svc:5672
-  quarkus.pooled-jms.max-connections: '1'
-  quarkus.pooled-jms.max-sessions-per-connection: '500'
+  application.properties: |
+    # quarkus.otel.exporter.otlp.traces.endpoint=http://otel-collector.observability.svc:4317
+    quarkus.qpid-jms.url=amqp://amq-broker-amqp-0-svc:5672
+    quarkus.pooled-jms.max-connections=1
+    quarkus.pooled-jms.max-sessions-per-connection=500
 ---
 apiVersion: v1
 kind: Secret
 metadata:
   name: quotes-producer-secret
 stringData:
-  quarkus.qpid-jms.username: quotes-producer
-  quarkus.qpid-jms.password: openshift
+  application.properties: |
+    quarkus.qpid-jms.username=quotes-producer
+    quarkus.qpid-jms.password=openshift
 type: Opaque
