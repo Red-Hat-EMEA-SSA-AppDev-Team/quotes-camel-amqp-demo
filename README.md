@@ -27,5 +27,30 @@ Then, open your browser to `http://localhost:8080/quotes.html`, and click on the
 
 ## Deploy to OpenShift
 
-mvn -f quotes-producer package -Dquarkus.openshift.deploy=true
-mvn -f quotes-processor package -Dquarkus.openshift.deploy=true
+### Pre-requisites
+
+- [Red Hat AMQ 7.12 Broker](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.12) operator is deployed in OpenShift
+
+### Instructions
+
+1. Login to the OpenShift cluster:
+    ```bash
+    oc login ...
+    ```
+2. Switch to the target OpenShift project:
+    ```bash
+    oc project ...
+    ```
+3. Deploy the Red Hat AMQ 7.12 Broker instance:
+4. Switch to the target OpenShift project:
+    ```bash
+    oc apply -f openshift/amq-broker.yaml
+    ```
+5. Deploy the `quotes-producer`:
+    ```bash
+    mvn -f quotes-producer package -Dquarkus.openshift.deploy=true
+    ```
+6. Deploy the `quotes-processor`:
+    ```bash
+    mvn -f quotes-processor package -Dquarkus.openshift.deploy=true
+    ```
