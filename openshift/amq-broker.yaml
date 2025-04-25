@@ -21,7 +21,7 @@ stringData:
     quotes-processor=openshift
     quotes-producer=openshift
   new-roles.properties: |
-    admin=quotes-processor, quotes-producer
+    admin=quotes-processor,quotes-producer
 type: Opaque
 ---
 apiVersion: broker.amq.io/v1beta1
