@@ -56,10 +56,6 @@
             <artifactId>quarkus-openshift</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.quarkiverse.messaginghub</groupId>
             <artifactId>quarkus-pooled-jms</artifactId>
         </dependency>
