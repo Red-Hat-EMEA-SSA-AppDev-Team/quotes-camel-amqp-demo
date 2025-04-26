@@ -48,7 +48,13 @@ spec:
     # Number of files to keep after reclaiming unused files. The default value of -1 means that no files are deleted during cleanup.
     - journalPoolFiles=10
     # The size (in bytes) of each journal file.
-    - journalFileSize=10485760
+    - journalFileSize=10485760 # 10MiB
+    # The maximum size (in bytes) for each address (-1 means no limits)
+    - addressSettings.#.maxSizeBytes=52428800 # 50MiB
+    # The page size (in bytes) to use for each address
+    - addressSettings.#.pageSizeBytes=10485760 # 10MiB
+    # What happens when an address where "max-size-bytes" is specified becomes full
+    - addressSettings.#.addressFullMessagePolicy=PAGE
   console:
     expose: true
   deploymentPlan:
@@ -63,7 +69,7 @@ spec:
     size: 1
     extraMounts:
       secrets:
-        - "broker-users-jaas-config"
+        - broker-users-jaas-config
     resources:
       limits:
         cpu: 500m
@@ -72,8 +78,6 @@ spec:
         cpu: 50m
         memory: 1024Mi
   env:
-    - name: TZ
-      value: Europe/Paris
     # Reference: https://developers.redhat.com/articles/2022/04/19/java-17-whats-new-openjdks-container-awareness#tuning_defaults_for_containers
     - name: JAVA_ARGS_APPEND
       value: '-XX:MaxRAMPercentage=50'
