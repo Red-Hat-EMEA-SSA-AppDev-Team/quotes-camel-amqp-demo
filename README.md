@@ -54,7 +54,7 @@ Then, open your browser to `http://localhost:8080/quotes.html`, and click on the
     ```bash
     mvn -f quotes-processor package -Dquarkus.openshift.deploy=true
     ```
-7. Run the following command line for the quotes app frontend URL:
+7. Run the following command to get the frontend URL for the Quotes app:
     ```bash
     echo "http://`(oc get route quotes-producer -o jsonpath='{.spec.host}')`/quotes.html"
     ```
