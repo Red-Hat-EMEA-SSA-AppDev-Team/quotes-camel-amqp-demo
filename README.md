@@ -29,11 +29,11 @@ In a second terminal, run:
 mvn -f quotes-processor quarkus:dev -Dquarkus.http.port=8081
 ```  
 
-Then, open your browser to `http://localhost:8080/quotes.html`, and click on the "Request Quote" button.
+Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhost:8080/quotes.html), and click on the `Request Quote` button.
 
 ## Deploy to OpenShift
 
-### Pre-requisites
+### Prerequisite
 
 - [Red Hat AMQ Broker v7.12+](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.12) operator is deployed in OpenShift
 
