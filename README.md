@@ -7,6 +7,12 @@ It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with
 ![](./doc_images/quote-app.png)
 
 
+## Prerequisites
+
+- JDK 21 installed with `JAVA_HOME` configured appropriately
+- Apache Maven 3.9+
+- Docker or [Podman](https://podman-desktop.io/)
+
 ## Start the application in dev mode
 
 > NOTE: When the `quarkus-messaging-amqp` extension is present and no AMQP broker is explicitly configured, Quarkus automatically enables AMQP Dev Service. This starts a temporary Apache ActiveMQ Artemis broker in development and test modes, streamlining setup and reducing manual configuration.
@@ -14,13 +20,13 @@ It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with
 In a first terminal, run:
 
 ```bash
-> mvn -f quotes-producer quarkus:dev
+mvn -f quotes-producer quarkus:dev
 ```
 
 In a second terminal, run:
 
 ```bash
-> mvn -f quotes-processor quarkus:dev -Dquarkus.http.port=8081
+mvn -f quotes-processor quarkus:dev -Dquarkus.http.port=8081
 ```  
 
 Then, open your browser to `http://localhost:8080/quotes.html`, and click on the "Request Quote" button.
@@ -42,19 +48,18 @@ Then, open your browser to `http://localhost:8080/quotes.html`, and click on the
     oc project ...
     ```
 3. Deploy the Red Hat AMQ Broker v7.12+ instance:
-4. Switch to the target OpenShift project:
     ```bash
     oc apply -f openshift/amq-broker.yaml
     ```
-5. Deploy the `quotes-producer`:
+4. Deploy the `quotes-producer`:
     ```bash
     mvn -f quotes-producer package -Dquarkus.openshift.deploy=true
     ```
-6. Deploy the `quotes-processor`:
+5. Deploy the `quotes-processor`:
     ```bash
     mvn -f quotes-processor package -Dquarkus.openshift.deploy=true
     ```
-7. Run the following command to get the frontend URL for the Quotes app:
+6. Run the following command to get the frontend URL for the Quotes app:
     ```bash
     echo "http://`(oc get route quotes-producer -o jsonpath='{.spec.host}')`/quotes.html"
     ```
