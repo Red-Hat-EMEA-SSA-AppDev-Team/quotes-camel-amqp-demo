@@ -35,7 +35,7 @@ Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhos
 
 ### Prerequisite
 
-- [Red Hat AMQ Broker v7.12+](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.12) operator is deployed in OpenShift
+- [Red Hat AMQ Broker v7.13+](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13) operator is deployed in OpenShift
 
 ### Instructions
 
