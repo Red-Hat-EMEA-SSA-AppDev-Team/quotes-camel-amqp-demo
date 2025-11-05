@@ -49,7 +49,7 @@ public class QuotesRequestApiRoute extends RouteBuilder {
             .log(LoggingLevel.INFO, "Request ${body} sent to 'quote-requests' AMQP queue. DONE.")
         ;
 
-        from("amqp:queue:quotes")
+        from("amqp:queue:quotes?acknowledgementModeName=CLIENT_ACKNOWLEDGE") 
             .routeId("consume-quotes-route")
             .log(LoggingLevel.INFO, "Received quote from the 'quotes' AMQP queue: ${body}")
             .to("reactive-streams:quotes")

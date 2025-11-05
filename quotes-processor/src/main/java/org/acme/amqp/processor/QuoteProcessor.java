@@ -9,7 +9,7 @@ public class QuoteProcessor extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        fromV("amqp:queue:quote-requests", "requestId")
+        fromV("amqp:queue:quote-requests?acknowledgementModeName=CLIENT_ACKNOWLEDGE", "requestId")
             .routeId("consume-quote-requests-route")
             .log(LoggingLevel.INFO, "Received quote request ${variable.requestId} from the 'quote-requests' AMQP queue.")
             .delay(200) // simulate some hard-working task

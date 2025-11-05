@@ -5,7 +5,7 @@ metadata:
   name: quotes-producer-config
 data:
   application.properties: |
-    # quarkus.otel.exporter.otlp.traces.endpoint=http://otel-collector.observability.svc:4317
+    quarkus.otel.exporter.otlp.endpoint=http://otel-collector.observability.svc:4317
     quarkus.qpid-jms.url=amqp://amq-broker-amqp-0-svc:5672
     quarkus.pooled-jms.max-connections=1
     quarkus.pooled-jms.max-sessions-per-connection=500
