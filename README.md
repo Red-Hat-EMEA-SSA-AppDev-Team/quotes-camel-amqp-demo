@@ -61,5 +61,5 @@ Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhos
     ```
 6. Run the following command to get the frontend URL for the Quotes app:
     ```bash
-    echo "http://`(oc get route quotes-producer -o jsonpath='{.spec.host}')`/quotes.html"
+    echo "https://`(oc get route quotes-producer -o jsonpath='{.spec.host}')`/quotes.html"
     ```
