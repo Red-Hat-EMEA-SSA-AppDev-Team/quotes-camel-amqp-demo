@@ -20,13 +20,13 @@ It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with
 In a first terminal, run:
 
 ```bash
-mvn -f quotes-producer quarkus:dev
+././mvnww -f quotes-producer quarkus:dev -Dquarkus.camel.jolokia.enabled=false
 ```
 
 In a second terminal, run:
 
 ```bash
-mvn -f quotes-processor quarkus:dev -Dquarkus.http.port=8081 -Dquarkus.camel.jolokia.enabled=false
+././mvnww -f quotes-processor quarkus:dev -Dquarkus.http.port=8081 -Dquarkus.camel.jolokia.enabled=false
 ```  
 
 Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhost:8080/quotes.html), and click on the `Request Quote` button.
@@ -53,11 +53,11 @@ Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhos
     ```
 4. Deploy the `quotes-producer`:
     ```bash
-    mvn -f quotes-producer package -Dquarkus.openshift.deploy=true
+    ./mvnw -f quotes-producer package -Dquarkus.openshift.deploy=true
     ```
 5. Deploy the `quotes-processor`:
     ```bash
-    mvn -f quotes-processor package -Dquarkus.openshift.deploy=true
+    ./mvnw -f quotes-processor package -Dquarkus.openshift.deploy=true
     ```
 6. Run the following command to get the frontend URL for the Quotes app:
     ```bash
