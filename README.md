@@ -26,7 +26,7 @@ In a first terminal, run:
 In a second terminal, run:
 
 ```bash
-././mvnww -f quotes-processor quarkus:dev -Dquarkus.http.port=8081 -Dquarkus.camel.jolokia.enabled=false
+././mvnww -f quotes-processor quarkus:dev -Dquarkus.http.port=8081 -Dquarkus.management.port=9877 -Dquarkus.camel.jolokia.enabled=false
 ```  
 
 Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhost:8080/quotes.html), and click on the `Request Quote` button.
