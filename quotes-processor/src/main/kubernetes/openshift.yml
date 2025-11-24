@@ -19,3 +19,20 @@ stringData:
     quarkus.qpid-jms.username=quotes-processor
     quarkus.qpid-jms.password=openshift
 type: Opaque
+---
+# Generate a ServiceMonitor resource for the quotes-processor service
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: quotes-processor
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: quotes-processor
+      app.kubernetes.io/version: 1.0.0-SNAPSHOT 
+  endpoints:
+    - scheme: http
+      targetPort: 9876
+      path: /observe/metrics
+      interval: 10s
+      honorLabels: true
