@@ -56,7 +56,7 @@ You can create a native executable using the following command:
 ./mvnw clean package -Pnative -Dquarkus.native.native-image-xmx=7g
 ```
 
->**NOTE** : The project is configured to use a container runtime for native builds. See `quarkus.native.container-build=true` in the [`application.yml`](./src/main/resources/application.yml). Also, adjust the `quarkus.native.native-image-xmx` value according to your container runtime available memory resources.
+>**NOTE** : The project is configured to use a container runtime for native builds. See `quarkus.native.container-build=true` in the [`application.properties`](./src/main/resources/application.properties). Also, adjust the `quarkus.native.native-image-xmx` value according to your container runtime available memory resources.
 
 You can then execute your native executable with: `./target/quotes-producer-1.0.0-SNAPSHOT-runner`
 
