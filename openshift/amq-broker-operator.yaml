@@ -1,0 +1,20 @@
+---
+# OperatorGroup — AllNamespaces mode so the AMQ Broker operator watches
+# broker CRs across every namespace in the cluster.
+# Starting with AMQ 7.9, the operator supports both SingleNamespace and AllNamespaces install modes.
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: amq-broker-operatorgroup
+spec: {}
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: amq-broker-rhel9
+spec:
+  channel: 7.13.x
+  installPlanApproval: Automatic
+  name: amq-broker-rhel9
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace

@@ -15,7 +15,9 @@ It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with
 
 ## Start the application in dev mode
 
-> NOTE: When the `quarkus-messaging-amqp` extension is present and no AMQP broker is explicitly configured, Quarkus automatically enables AMQP Dev Service. This starts a temporary Apache ActiveMQ Artemis broker in development and test modes, streamlining setup and reducing manual configuration.
+> **NOTE**: In development and test modes, Quarkus automatically starts the following Dev Services:
+> - **AMQP Dev Service**: a temporary Apache ActiveMQ Artemis broker (enabled by the `quarkus-messaging-amqp` extension when no AMQP broker is explicitly configured).
+> - **Grafana LGTM Dev Service**: a Grafana LGTM stack (Loki, Grafana, Tempo, Mimir) for observability (enabled by the `quarkus-observability-devservices-lgtm` extension). The Grafana endpoint is dynamically assigned; find it via the Quarkus Dev UI at `http://localhost:8080/q/dev-ui`.
 
 In a first terminal, run:
 
@@ -33,10 +35,6 @@ Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhos
 
 ## Deploy to OpenShift
 
-### Prerequisite
-
-- [Red Hat AMQ Broker v7.13+](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13) operator is deployed in OpenShift
-
 ### Instructions
 
 1. Login to the OpenShift cluster:
@@ -47,19 +45,27 @@ Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhos
     ```bash
     oc project ...
     ```
-3. Deploy the Red Hat AMQ Broker v7.13+ instance:
+3. Install the [Red Hat AMQ Broker v7.13+](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13) operator (skip if already installed):
+    ```bash
+    oc apply -f openshift/amq-broker-operator.yaml
+    # Wait for the operator CSV to reach 'Succeeded'
+    oc get csv -w
+    ```
+4. Deploy the Red Hat AMQ Broker v7.13+ instance:
     ```bash
     oc apply -f openshift/amq-broker.yaml
     ```
-4. Deploy the `quotes-producer`:
+> **NOTE**: Before deploying, review the `quarkus.otel.exporter.otlp.endpoint` value in [`quotes-producer/src/main/kubernetes/openshift.yml`](./quotes-producer/src/main/kubernetes/openshift.yml) and [`quotes-processor/src/main/kubernetes/openshift.yml`](./quotes-processor/src/main/kubernetes/openshift.yml). The default (`http://otel-collector.observability.svc:4317`) must be adjusted to match the OpenTelemetry collector endpoint available in your target environment.
+
+5. Deploy the `quotes-producer`:
     ```bash
     ./mvnw -f quotes-producer package -Dquarkus.openshift.deploy=true
     ```
-5. Deploy the `quotes-processor`:
+6. Deploy the `quotes-processor`:
     ```bash
     ./mvnw -f quotes-processor package -Dquarkus.openshift.deploy=true
     ```
-6. Run the following command to get the frontend URL for the Quotes app:
+7. Run the following command to get the frontend URL for the Quotes app:
     ```bash
     echo "https://`(oc get route quotes-producer -o jsonpath='{.spec.host}')`/quotes.html"
     ```
