@@ -20,13 +20,13 @@ It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with
 In a first terminal, run:
 
 ```bash
-././mvnww -f quotes-producer quarkus:dev -Dquarkus.camel.jolokia.enabled=false
+./mvnw -f quotes-producer quarkus:dev -Dquarkus.camel.jolokia.enabled=false
 ```
 
 In a second terminal, run:
 
 ```bash
-././mvnww -f quotes-processor quarkus:dev -Dquarkus.http.port=8081 -Dquarkus.management.port=9877 -Dquarkus.camel.jolokia.enabled=false
+./mvnw -f quotes-processor quarkus:dev -Dquarkus.http.port=8081 -Dquarkus.management.port=9877 -Dquarkus.camel.jolokia.enabled=false
 ```  
 
 Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhost:8080/quotes.html), and click on the `Request Quote` button.
@@ -47,7 +47,7 @@ Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhos
     ```bash
     oc project ...
     ```
-3. Deploy the Red Hat AMQ Broker v7.12+ instance:
+3. Deploy the Red Hat AMQ Broker v7.13+ instance:
     ```bash
     oc apply -f openshift/amq-broker.yaml
     ```

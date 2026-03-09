@@ -40,7 +40,7 @@ According to your environment, you may want to customize:
     - `quarkus.qpid-jms.url`
     - `quarkus.qpid-jms.username`
     - `quarkus.qpid-jms.password`
-- The Jaeger collector endpoint by adding the following run-time _system properties_:
+- The **OpenTelemetry collector endpoint** by adding the following run-time _system properties_:
     - `quarkus.otel.exporter.otlp.endpoint`
 
 Example:
@@ -62,7 +62,7 @@ You can then execute your native executable with: `./target/quotes-producer-1.0.
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
 
->**NOTE** : If your are on Apple Silicon and built the native image inside a Linux container (-Dquarkus.native.container-build=true), the result is a Linux ELF binary. macOS can’t execute Linux binaries, so launching it on macOS yields “exec format error”. Follow the steps below to run your Linux native binary.
+>**NOTE** : If you are on Apple Silicon and built the native image inside a Linux container (-Dquarkus.native.container-build=true), the result is a Linux ELF binary. macOS can’t execute Linux binaries, so launching it on macOS yields “exec format error”. Follow the steps below to run your Linux native binary.
 
 1. Build the container image of your Linux native binary:
     ```shell
