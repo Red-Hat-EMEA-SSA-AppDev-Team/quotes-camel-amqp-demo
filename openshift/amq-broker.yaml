@@ -39,22 +39,21 @@ spec:
   adminPassword: openshift
   adminUser: admin
   brokerProperties:
+    # Managing scaledown by using the AMQ Broker Operator
+    # Reference: https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.14/html-single/deploying_amq_broker_on_openshift/index?extIdCarryOver=true&intcmp=7013a0000026GZMAA2&sc_cid=7015Y000003sysvQAA#high-availability-for-broker-on-ocp_broker-ocp
+    - HAPolicyConfiguration.scaleDownConfiguration.enabled=false
+    - HAPolicyConfiguration=PRIMARY_ONLY
+    - HAPolicyConfiguration.scaleDownConfiguration.discoveryGroup=my-discovery-group
     # true means that the server will add the name of the validated user to messages it sends
     - populateValidatedUser=true
     # true means that the server will not allow any message that doesn't have a validated user, in JMS this is JMSXUserID
     - rejectEmptyValidatedUser=false
-    # Number of journal files to initially create when the broker starts.
-    - journalMinFiles=2
-    # Number of files to keep after reclaiming unused files. The default value of -1 means that no files are deleted during cleanup.
-    - journalPoolFiles=10
-    # The size (in bytes) of each journal file.
-    - journalFileSize=10485760 # 10MiB
-    # The maximum size (in bytes) for each address (-1 means no limits)
+    # Address settings
     - addressSettings.#.maxSizeBytes=52428800 # 50MiB
-    # The page size (in bytes) to use for each address
     - addressSettings.#.pageSizeBytes=10485760 # 10MiB
-    # What happens when an address where "max-size-bytes" is specified becomes full
     - addressSettings.#.addressFullMessagePolicy=PAGE
+    - addressSettings.#.defaultConsumerWindowSize=1048576
+    - addressSettings.#.redeliveryDelay=100
   console:
     expose: true
   deploymentPlan:
@@ -80,7 +79,7 @@ spec:
   env:
     # Reference: https://developers.redhat.com/articles/2022/04/19/java-17-whats-new-openjdks-container-awareness#tuning_defaults_for_containers
     - name: JAVA_ARGS_APPEND
-      value: '-XX:MaxRAMPercentage=50'
+      value: '-XX:MaxRAMPercentage=75'
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor

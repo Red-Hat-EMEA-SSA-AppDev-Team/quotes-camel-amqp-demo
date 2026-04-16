@@ -1,7 +1,7 @@
 Camel Quarkus AMQP 1.0 Demo
 ============================
 
-This project demonstrates how to interact with AMQP 1.0 using [Red Hat AMQ Broker 7.13.x](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13) and [Red Hat build of Apache Camel 4.14.x for Quarkus](https://docs.redhat.com/en/documentation/red_hat_build_of_apache_camel/4.14#Red%20Hat%20build%20of%20Apache%20Camel%20for%20Quarkus).
+This project demonstrates how to interact with AMQP 1.0 using [Red Hat AMQ Broker 7.14.x](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.14) and [Red Hat build of Apache Camel 4.14.x for Quarkus](https://docs.redhat.com/en/documentation/red_hat_build_of_apache_camel/4.14#Red%20Hat%20build%20of%20Apache%20Camel%20for%20Quarkus).
 It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with both the quote producer and processor reimplemented using Camel for Quarkus.
 
 ![](./doc_images/quote-app.png)
@@ -45,13 +45,13 @@ Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhos
     ```bash
     oc project ...
     ```
-3. Install the [Red Hat AMQ Broker v7.13+](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13) operator (skip if already installed):
+3. Install the [Red Hat AMQ Broker v7.14+](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.14) operator (skip if already installed):
     ```bash
     oc apply -f openshift/amq-broker-operator.yaml
     # Wait for the operator CSV to reach 'Succeeded'
     oc get csv -w
     ```
-4. Deploy the Red Hat AMQ Broker v7.13+ instance:
+4. Deploy the Red Hat AMQ Broker v7.14+ instance:
     ```bash
     oc apply -f openshift/amq-broker.yaml
     ```
