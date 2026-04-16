@@ -44,6 +44,8 @@ spec:
     - HAPolicyConfiguration.scaleDownConfiguration.enabled=false
     - HAPolicyConfiguration=PRIMARY_ONLY
     - HAPolicyConfiguration.scaleDownConfiguration.discoveryGroup=my-discovery-group
+    # Log login events
+    - brokerPlugins."org.apache.activemq.artemis.core.server.plugin.impl.LoggingActiveMQServerPlugin.class".init=LOG_CONNECTION_EVENTS=true,LOG_SESSION_EVENTS=true
     # true means that the server will add the name of the validated user to messages it sends
     - populateValidatedUser=true
     # true means that the server will not allow any message that doesn't have a validated user, in JMS this is JMSXUserID
