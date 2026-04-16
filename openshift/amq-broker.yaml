@@ -50,6 +50,9 @@ spec:
     - populateValidatedUser=true
     # true means that the server will not allow any message that doesn't have a validated user, in JMS this is JMSXUserID
     - rejectEmptyValidatedUser=false
+    # Delete paging directories for individual addresses after each use
+    # Reference: https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.14/html-single/configuring_amq_broker/index?extIdCarryOver=true&intcmp=7013a0000026GZMAA2&sc_cid=7015Y000003sysvQAA#proc-br-purging-paging-directories_configuring
+    - purgePageFolders=true
     # Address settings
     - addressSettings.#.maxSizeBytes=52428800 # 50MiB
     - addressSettings.#.pageSizeBytes=10485760 # 10MiB
