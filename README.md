@@ -1,7 +1,7 @@
 Camel Quarkus AMQP 1.0 Demo
 ============================
 
-This project demonstrates how to interact with AMQP 1.0 using [Red Hat AMQ Broker 7.14.x](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.14) and [Red Hat build of Apache Camel 4.14.x for Quarkus](https://docs.redhat.com/en/documentation/red_hat_build_of_apache_camel/4.14#Red%20Hat%20build%20of%20Apache%20Camel%20for%20Quarkus).
+This project demonstrates how to interact with AMQP 1.0 using [Red Hat AMQ Broker 7.14.x](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.14) and [Red Hat build of Apache Camel 4.18.x for Quarkus](https://docs.redhat.com/en/documentation/red_hat_build_of_apache_camel/4.18#Red%20Hat%20build%20of%20Apache%20Camel%20for%20Quarkus).
 It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with both the quote producer and processor reimplemented using Camel for Quarkus.
 
 ![](./doc_images/quote-app.png)
@@ -28,8 +28,14 @@ In a first terminal, run:
 In a second terminal, run:
 
 ```bash
-./mvnw -f quotes-processor quarkus:dev -Dquarkus.http.port=8081 -Dquarkus.management.port=9877 -Dquarkus.camel.jolokia.enabled=false
-```  
+./mvnw -f quotes-processor quarkus:dev \
+  -Dquarkus.http.port=8081 \
+  -Dquarkus.management.port=9877 \
+  -Dquarkus.camel.jolokia.enabled=false \
+  -Dquarkus.amqp.devservices.enabled=false
+```
+
+> **NOTE**: Quarkus 3.33+ has a regression that breaks cross-application AMQP Dev Services sharing ([quarkusio/quarkus#53350](https://github.com/quarkusio/quarkus/issues/53350)). The second app no longer reuses the Artemis broker started by the first and instead tries to bind another container on port `5672`, which fails with `address already in use`. Disable AMQP Dev Services on `quotes-processor` (as above) so it connects to the broker already started by `quotes-producer`.
 
 Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhost:8080/quotes.html), and click on the `Request Quote` button.
 
