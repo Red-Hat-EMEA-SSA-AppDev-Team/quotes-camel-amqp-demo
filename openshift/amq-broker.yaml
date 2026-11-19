@@ -83,8 +83,9 @@ spec:
         memory: 1024Mi
   env:
     # Reference: https://developers.redhat.com/articles/2022/04/19/java-17-whats-new-openjdks-container-awareness#tuning_defaults_for_containers
+    # -XX:-UseBASE64Intrinsics: CVE-2026-114938 (Java4Shell) interim workaround (RHSB-2026-018).
     - name: JAVA_ARGS_APPEND
-      value: '-XX:MaxRAMPercentage=75'
+      value: '-XX:MaxRAMPercentage=75 -XX:-UseBASE64Intrinsics'
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
