@@ -1,7 +1,7 @@
 Camel Quarkus AMQP 1.0 Demo
 ============================
 
-This project demonstrates how to interact with AMQP 1.0 using [Red Hat AMQ Broker 7.14.x](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.14) and [Red Hat build of Apache Camel 4.18.x for Quarkus](https://docs.redhat.com/en/documentation/red_hat_build_of_apache_camel/4.18#Red%20Hat%20build%20of%20Apache%20Camel%20for%20Quarkus).
+This project demonstrates how to interact with AMQP 1.0 using [Red Hat AMQ Broker 7.14.x](https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.14) and [Red Hat build of Apache Camel 4.22.x for Quarkus](https://docs.redhat.com/en/documentation/red_hat_build_of_apache_camel/4.22#Red%20Hat%20build%20of%20Apache%20Camel%20for%20Quarkus).
 It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with both the quote producer and processor reimplemented using Camel for Quarkus.
 
 ![](./doc_images/quote-app.png)
@@ -9,7 +9,7 @@ It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with
 
 ## Prerequisites
 
-- JDK 21 installed with `JAVA_HOME` configured appropriately
+- JDK 25 installed with `JAVA_HOME` configured appropriately
 - Apache Maven 3.9+
 - Docker or [Podman](https://podman-desktop.io/)
 
