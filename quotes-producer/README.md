@@ -88,44 +88,42 @@ Used environment:
 - **Container runtime for native builds**: podman v5.8.2
 - **AMQ Broker**: v7.14 running on a remote OpenShift v4.22 SNO cluster
 
-### JVM mode -> _started in **2.007s**_
+### JVM mode -> _started in **1.668s**_
 
 ```shell
 # java -Dquarkus.qpid-jms.url="amqps://<AMQ_BROKER_HOSTNAME>:443?transport.trustAll=true&transport.verifyHost=false&amqp.idleTimeout=120000" -Dquarkus.qpid-jms.username=quotes-producer -Dquarkus.qpid-jms.password=openshift -Dquarkus.otel.exporter.otlp.endpoint="http://localhost:4317" -jar target/quarkus-app/quarkus-run.jar
 [...]
-2026-07-22 20:35:34,954 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.qu.co.CamelBootstrapRecorder] (main) Apache Camel Quarkus 3.33.0.redhat-00008 is starting
-2026-07-22 20:35:34,956 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.MainSupport] (main) Apache Camel (Main) 4.18.1.redhat-00026 is starting
-2026-07-22 20:35:34,990 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.BaseMainSupport] (main) Auto-configuration summary
-2026-07-22 20:35:34,991 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.BaseMainSupport] (main)     [MicroProfilePropertiesSource] camel.context.name = quotes-producer
-2026-07-22 20:35:35,147 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Apache Camel 4.18.1.redhat-00026 (quotes-producer) is starting
-2026-07-22 20:35:35,223 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.op.OpenTelemetryTracer] (main) Opentelemetry2 enabled
-2026-07-22 20:35:35,836 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.qp.jm.JmsConnection] (AmqpProvider :(1):[amqps://<AMQ_BROKER_HOSTNAME>:443]) Connection ID:4524cdc9-d880-4074-955f-48b8d86e0b63:1 connected to server: amqps://<AMQ_BROKER_HOSTNAME>:443
-2026-07-22 20:35:35,843 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Routes startup (total:2 rest-dsl:1)
-2026-07-22 20:35:35,844 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main)     Started consume-quotes-route (amqp://queue:quotes)
-2026-07-22 20:35:35,844 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main)     Started request-quote-route (rest://post:/quotes:/request)
-2026-07-22 20:35:35,844 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Apache Camel 4.18.1.redhat-00026 (quotes-producer) started in 696ms (build:0ms init:0ms start:696ms boot:805ms)
-2026-07-22 20:35:35,912 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) quotes-producer 1.0.0 on JVM (powered by Quarkus 3.33.2.redhat-00004) started in 2.007s. Listening on: http://0.0.0.0:8080. Management interface listening on http://0.0.0.0:9876.
-2026-07-22 20:35:35,912 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) Profile prod activated. 
-2026-07-22 20:35:35,912 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) Installed features: [camel-amqp, camel-attachments, camel-bean, camel-core, camel-direct, camel-jackson, camel-jms, camel-jolokia, camel-management, camel-micrometer, camel-microprofile-health, camel-observability-services, camel-opentelemetry2, camel-platform-http, camel-reactive-streams, camel-rest, camel-smallrye-reactive-messaging, camel-xml-io-dsl, cdi, kubernetes, messaging, messaginghub-pooled-jms, micrometer, opentelemetry, qpid-jms, rest, smallrye-context-propagation, smallrye-health, vertx]
+2026-11-24 18:36:04,452 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.MainSupport] (main) Apache Camel (Main) 4.22.1.redhat-00008 is starting
+2026-11-24 18:36:04,488 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.BaseMainSupport] (main) Auto-configuration summary
+2026-11-24 18:36:04,489 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.BaseMainSupport] (main)     [MicroProfilePropertiesSource] camel.context.name = quotes-producer
+2026-11-24 18:36:04,647 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Apache Camel 4.22.1.redhat-00008 (quotes-producer) is starting
+2026-11-24 18:36:04,707 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.op.OpenTelemetryTracer] (main) Opentelemetry2 enabled
+2026-11-24 18:36:05,077 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.qp.jm.JmsConnection] (AmqpProvider :(1):[amqps://<AMQ_BROKER_HOSTNAME>:443?transport.trustAll=true&transport.verifyHost=false&amqp.idleTimeout=120000]) Connection ID:e219c5e7-293a-4f60-8868-e658af21d65a:1 connected to server: amqps://<AMQ_BROKER_HOSTNAME>:443?transport.trustAll=true&transport.verifyHost=false&amqp.idleTimeout=120000
+2026-11-24 18:36:05,084 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Routes startup (total:2 rest-dsl:1)
+2026-11-24 18:36:05,085 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main)     Started consume-quotes-route (amqp://queue:quotes)
+2026-11-24 18:36:05,085 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main)     Started request-quote-route (rest://post:/quotes:/request)
+2026-11-24 18:36:05,086 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Apache Camel 4.22.1.redhat-00008 (quotes-producer) started in 438ms (build:0ms init:0ms start:438ms boot:871ms)
+2026-11-24 18:36:05,133 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) quotes-producer 1.0.0 on JVM (powered by Quarkus 3.40.1.redhat-00002) started in 1.668s. Listening on: http://0.0.0.0:8080. Management interface listening on http://0.0.0.0:9876.
+2026-11-24 18:36:05,134 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) Profile prod activated. 
+2026-11-24 18:36:05,134 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) Installed features: [camel-amqp, camel-attachments, camel-bean, camel-core, camel-direct, camel-jackson, camel-jms, camel-jolokia, camel-management, camel-micrometer, camel-microprofile-health, camel-observability-services, camel-opentelemetry2, camel-platform-http, camel-reactive-streams, camel-rest, camel-smallrye-reactive-messaging, camel-xml-io-dsl, cdi, kubernetes, messaging, messaginghub-pooled-jms, micrometer, opentelemetry, qpid-jms, rest, smallrye-context-propagation, smallrye-health, vertx]
 ```
 
-### Native mode -> _started in **0.508s**_
+### Native mode -> _started in **0.456s**_
 
 ```shell
 # podman run --rm --name quotes-producer -p 8081:8080,9876:9876 -e QUARKUS_QPID-JMS_URL="amqps://<AMQ_BROKER_HOSTNAME>:443?transport.trustAll=true&transport.verifyHost=false&amqp.idleTimeout=120000" -e QUARKUS_QPID-JMS_USERNAME=quotes-producer -e QUARKUS_QPID-JMS_PASSWORD=openshift -e QUARKUS_OTEL_EXPORTER_OTLP_ENDPOINT=http://host.containers.internal:4317 quotes-producer
 [...]
-2026-07-22 18:36:33,758 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.qu.co.CamelBootstrapRecorder] (main) Apache Camel Quarkus 3.33.0.redhat-00008 is starting
-2026-07-22 18:36:33,759 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.MainSupport] (main) Apache Camel (Main) 4.18.1.redhat-00026 is starting
-2026-07-22 18:36:33,776 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.BaseMainSupport] (main) Auto-configuration summary
-2026-07-22 18:36:33,776 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.BaseMainSupport] (main)     [MicroProfilePropertiesSource] camel.context.name = quotes-producer
-2026-07-22 18:36:33,795 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Apache Camel 4.18.1.redhat-00026 (quotes-producer) is starting
-2026-07-22 18:36:33,835 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.op.OpenTelemetryTracer] (main) Opentelemetry2 enabled
-2026-07-22 18:36:34,143 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.qp.jm.JmsConnection] (AmqpProvider :(1):[amqps://<AMQ_BROKER_HOSTNAME>:443]) Connection ID:d41eab63-8214-40fc-ac22-7d22f949c0a6:1 connected to server: amqps://<AMQ_BROKER_HOSTNAME>:443
-2026-07-22 18:36:34,144 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Routes startup (total:2 rest-dsl:1)
-2026-07-22 18:36:34,144 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main)     Started consume-quotes-route (amqp://queue:quotes)
-2026-07-22 18:36:34,144 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main)     Started request-quote-route (rest://post:/quotes:/request)
-2026-07-22 18:36:34,144 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Apache Camel 4.18.1.redhat-00026 (quotes-producer) started in 348ms (build:0ms init:0ms start:348ms)
-2026-07-22 18:36:34,146 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) quotes-producer 1.0.0 native (powered by Quarkus 3.33.2.redhat-00004) started in 0.508s. Listening on: http://0.0.0.0:8080. Management interface listening on http://0.0.0.0:9876.
-2026-07-22 18:36:34,146 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) Profile prod activated. 
-2026-07-22 18:36:34,146 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) Installed features: [camel-amqp, camel-attachments, camel-bean, camel-core, camel-direct, camel-jackson, camel-jms, camel-jolokia, camel-management, camel-micrometer, camel-microprofile-health, camel-observability-services, camel-opentelemetry2, camel-platform-http, camel-reactive-streams, camel-rest, camel-smallrye-reactive-messaging, camel-xml-io-dsl, cdi, kubernetes, messaging, messaginghub-pooled-jms, micrometer, opentelemetry, qpid-jms, rest, smallrye-context-propagation, smallrye-health, vertx]
+2026-11-24 17:38:14,506 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.MainSupport] (main) Apache Camel (Main) 4.22.1.redhat-00008 is starting
+2026-11-24 17:38:14,518 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.BaseMainSupport] (main) Auto-configuration summary
+2026-11-24 17:38:14,518 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.ma.BaseMainSupport] (main)     [MicroProfilePropertiesSource] camel.context.name = quotes-producer
+2026-11-24 17:38:14,528 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Apache Camel 4.22.1.redhat-00008 (quotes-producer) is starting
+2026-11-24 17:38:14,569 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.op.OpenTelemetryTracer] (main) Opentelemetry2 enabled
+2026-11-24 17:38:14,875 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.qp.jm.JmsConnection] (AmqpProvider :(1):[amqps://<AMQ_BROKER_HOSTNAME>:443?transport.trustAll=true&transport.verifyHost=false&amqp.idleTimeout=120000]) Connection ID:b0e6db92-bfa7-4919-98c7-393b4185c45f:1 connected to server: amqps://<AMQ_BROKER_HOSTNAME>:443?transport.trustAll=true&transport.verifyHost=false&amqp.idleTimeout=120000
+2026-11-24 17:38:14,876 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Routes startup (total:2 rest-dsl:1)
+2026-11-24 17:38:14,876 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main)     Started consume-quotes-route (amqp://queue:quotes)
+2026-11-24 17:38:14,876 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main)     Started request-quote-route (rest://post:/quotes:/request)
+2026-11-24 17:38:14,876 INFO  traceId=, parentId=, spanId=, sampled= [or.ap.ca.im.en.AbstractCamelContext] (main) Apache Camel 4.22.1.redhat-00008 (quotes-producer) started in 348ms (build:0ms init:0ms start:348ms)
+2026-11-24 17:38:14,880 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) quotes-producer 1.0.0 native (powered by Quarkus 3.40.1.redhat-00002) started in 0.456s. Listening on: http://0.0.0.0:8080. Management interface listening on http://0.0.0.0:9876.
+2026-11-24 17:38:14,880 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) Profile prod activated. 
+2026-11-24 17:38:14,880 INFO  traceId=, parentId=, spanId=, sampled= [io.quarkus] (main) Installed features: [camel-amqp, camel-attachments, camel-bean, camel-core, camel-direct, camel-jackson, camel-jms, camel-jolokia, camel-management, camel-micrometer, camel-microprofile-health, camel-observability-services, camel-opentelemetry2, camel-platform-http, camel-reactive-streams, camel-rest, camel-smallrye-reactive-messaging, camel-xml-io-dsl, cdi, kubernetes, messaging, messaginghub-pooled-jms, micrometer, opentelemetry, qpid-jms, rest, smallrye-context-propagation, smallrye-health, vertx]
 ```

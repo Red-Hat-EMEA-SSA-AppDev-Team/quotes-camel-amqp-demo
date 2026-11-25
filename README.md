@@ -22,22 +22,21 @@ It builds on the [Quarkus AMQP quickstart](https://quarkus.io/guides/amqp), with
 In a first terminal, run:
 
 ```bash
-./mvnw -f quotes-producer quarkus:dev -Dquarkus.camel.jolokia.enabled=false
+./mvnw -f quotes-producer clean compile quarkus:dev \
+  -Dquarkus.camel.jolokia.enabled=false
 ```
 
 In a second terminal, run:
 
 ```bash
-./mvnw -f quotes-processor quarkus:dev \
+./mvnw -f quotes-processor clean compile quarkus:dev \
   -Dquarkus.http.port=8081 \
   -Dquarkus.management.port=9877 \
-  -Dquarkus.camel.jolokia.enabled=false \
-  -Dquarkus.amqp.devservices.enabled=false
+  -Dquarkus.camel.jolokia.enabled=false
 ```
-
-> **NOTE**: Quarkus 3.33+ has a regression that breaks cross-application AMQP Dev Services sharing ([quarkusio/quarkus#53350](https://github.com/quarkusio/quarkus/issues/53350)). The second app no longer reuses the Artemis broker started by the first and instead tries to bind another container on port `5672`, which fails with `address already in use`. Disable AMQP Dev Services on `quotes-processor` (as above) so it connects to the broker already started by `quotes-producer`.
-
 Then, open your browser to [`http://localhost:8080/quotes.html`](http://localhost:8080/quotes.html), and click on the `Request Quote` button.
+
+> **NOTE:** Cross-application AMQP Dev Services sharing was broken in `3.33.0-3.33.3` ([quarkusio/quarkus#53350](https://github.com/quarkusio/quarkus/issues/53350), `ContainerLocator` missed `RunningContainer` for `discovered()`). Fixed in upstream `3.33.4` / `4.0` via [#54864](https://github.com/quarkusio/quarkus/pull/54864) and verified in `Red Hat build of Quarkus 3.40.1.redhat-00004` (this repo's `quarkus.platform.version`) — the second app now logs `ContainerLocator: Dev Services container found: ...artemis... Connecting to: localhost:5672` and reuses the broker (`Dev Service Lgtm re-used`).
 
 ## Deploy to OpenShift
 
